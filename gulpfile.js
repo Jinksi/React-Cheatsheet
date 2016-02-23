@@ -55,4 +55,4 @@ gulp.task('markdown', function() {
 });
 
 gulp.task('default', ['serve', 'copy-index-html', 'markdown']);
-gulp.task('build', ['sass', 'copy-index-html']);
+gulp.task('build', ['sass', 'copy-index-html', 'markdown']);
