@@ -5,8 +5,8 @@
   "main": "index.js",
   "repository": "git@github.com:jinksi/react-cheatsheet.git",
   "scripts": {
-    "start": "webpack-dev-server --inline --progress",
-    "build": "webpack -p --progress"
+    "start": "webpack-dev-server --inline --progress & gulp",
+    "build": "webpack -p --progress && gulp build"
   },
   "author": "Eric Jinks",
   "license": "",
@@ -16,7 +16,11 @@
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
     "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.14.0"
+    "webpack-dev-server": "^1.14.0",
+    "browser-sync": "^2.2.0",
+    "gulp": "^3.8.11",
+    "gulp-rucksack": "^0.1.2",
+    "gulp-sass": "^2.2.0"
   },
   "dependencies": {
     "babel-preset-stage-1": "^6.1.18",
