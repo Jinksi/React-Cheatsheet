@@ -2,3 +2,4 @@
 bundle.js
 npm-debug.log
 build
+src/data/data.json

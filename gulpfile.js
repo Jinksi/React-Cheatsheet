@@ -2,12 +2,16 @@ var gulp        = require('gulp');
 var browserSync = require('browser-sync');
 var sass        = require('gulp-sass');
 var rucksack = require('gulp-rucksack');
+var gutil = require('gulp-util');
+var markdown = require('gulp-markdown-to-json');
 var reload      = browserSync.reload;
 
 var src = {
   scss: 'src/scss/**/*.scss',
   css:  './build/',
-  indexHtml: 'src/*.html'
+  indexHtml: 'src/*.html',
+  md: 'src/**/*.md',
+  mdDest: 'src/data'
 };
 
 // Static Server + watching scss/php files
@@ -43,5 +47,12 @@ gulp.task('copy-index-html', function() {
     .pipe(gulp.dest('./build'));
 });
 
-gulp.task('default', ['serve', 'copy-index-html']);
+gulp.task('markdown', function() {
+  gulp.src(src.md)
+    .pipe(gutil.buffer())
+    .pipe(markdown('data.json'))
+    .pipe(gulp.dest(src.mdDest));
+});
+
+gulp.task('default', ['serve', 'copy-index-html', 'markdown']);
 gulp.task('build', ['sass', 'copy-index-html']);
