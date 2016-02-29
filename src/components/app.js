@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class App extends Component {
+import { fetchSnippets } from '../actions';
+
+class App extends Component {
+
+  componentDidMount(){
+    this.props.fetchSnippets();
+  }
+
   render() {
     return (
       <div className="container">
@@ -9,3 +17,11 @@ export default class App extends Component {
     );
   }
 }
+
+function mapStateToProps(state){
+  return {
+    snippets: state.snippets
+  };
+}
+
+export default connect(mapStateToProps, { fetchSnippets: fetchSnippets })(App);
