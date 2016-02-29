@@ -3,16 +3,38 @@ import { connect } from 'react-redux';
 
 import { fetchSnippets } from '../actions';
 
+import SearchBar from './searchbar';
+import SnippetListItem from './snippet-list-item';
+
 class App extends Component {
 
   componentDidMount(){
     this.props.fetchSnippets();
   }
 
+  renderSnippets(){
+    if(!this.props.snippets.all.length){
+      return (
+      <div className="loading">Loading</div>
+      );
+    }
+    return this.props.snippets.all.map((snip) => {
+      return (
+        <SnippetListItem
+          key={snip.title}
+          title={snip.title}
+          body={snip.body}
+          tags={snip.tags}
+          />
+      );
+    });
+  }
+
   render() {
     return (
       <div className="container">
-        <h1 className="title">React CheatSheet</h1>
+        <SearchBar />
+        {this.renderSnippets()}
       </div>
     );
   }
